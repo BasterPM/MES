@@ -32,11 +32,10 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)  # авторизуем пользователя после регистрации
-            return redirect('dashboard.html')  # Перенаправление на главную страницу
+            return redirect('dashboard')  # Перенаправление в личный кабинет
     else:
         form = CustomUserCreationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'register', {'form': form})
 
 
-def dashboard_view(request):
-    return render(request, 'dashboard.html')
+
