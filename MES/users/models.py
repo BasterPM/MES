@@ -29,11 +29,12 @@ class Employee(AbstractUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     position = models.ManyToManyField('EmployeePosition', related_name='employees', blank=True)
+    username = None
 
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = [first_name, last_name]
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
 
 class EmployeePosition(models.Model):
