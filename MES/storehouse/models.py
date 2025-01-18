@@ -15,12 +15,21 @@ class UnitMeasurement(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
+class Seller(models.Model):
+    seller_name = models.CharField(max_length=300, unique=True)
+    phone_number = models.IntegerField(blank=True)
+    email = models.EmailField(max_length=150, blank=True)
+    website = models.URLField(blank=True)
+
+
 class Storehouse(models.Model):
     # Склад
     storehouse_unit = models.CharField(max_length=150, unique=True)
+    c1_article = models.IntegerField(blank=True)
     id_method_obtaining = models.ForeignKey(MethodObtaining, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0)
     id_unit_measurement = models.ForeignKey(UnitMeasurement, on_delete=models.SET_NULL, null=True)
+    id_seller = models.ManyToManyField(Seller, related_name='seller', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -55,3 +64,6 @@ class TechnologicalProcess(models.Model):
     pdf_file = models.FileField(upload_to='documentation/technological_process')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+
