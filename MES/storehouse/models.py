@@ -68,6 +68,3 @@ class TechnologicalProcess(models.Model):
     pdf_file = models.FileField(upload_to='documentation/technological_process')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-
-
