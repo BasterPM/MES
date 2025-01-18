@@ -24,12 +24,16 @@ class Seller(models.Model):
 
 class Storehouse(models.Model):
     # Склад
-    storehouse_unit = models.CharField(max_length=150, unique=True)
-    c1_article = models.IntegerField(blank=True)
+    storehouse_unit = models.CharField(max_length=150, unique=True)  # название
+    c1_article = models.IntegerField(blank=True)  # артикул по 1ске
     id_method_obtaining = models.ForeignKey(MethodObtaining, on_delete=models.SET_NULL, null=True)
-    quantity = models.IntegerField(default=0)
+    # айди способа получения
+    quantity = models.IntegerField(default=0)  # количество на складе
     id_unit_measurement = models.ForeignKey(UnitMeasurement, on_delete=models.SET_NULL, null=True)
-    id_seller = models.ManyToManyField(Seller, related_name='seller', blank=True)
+    # айди меры измерения
+    storage_place = models.CharField(max_length=150, blank=True)
+    # место хранения
+    id_seller = models.ManyToManyField(Seller, related_name='seller', blank=True)  # айди продовца
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
