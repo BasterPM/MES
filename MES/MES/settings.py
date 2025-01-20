@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'dashboard',
-    'storehouse'
+    'storehouse',
+    'orders',
+    'task_manager',
 ]
 
 MIDDLEWARE = [

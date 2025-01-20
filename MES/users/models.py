@@ -22,13 +22,43 @@ class CustomUserManager(BaseUserManager):
         return user
 
 
+class EmployeePosition(models.Model):
+    position = models.CharField(max_length=100, unique=True, verbose_name='Специализация')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Специализация'
+        verbose_name_plural = 'Специализации'
+
+    def __str__(self):
+        return f"{self.position}"
+
+
+class Role(models.Model):
+    role_name = models.CharField(max_length=100, unique=True, verbose_name='Должность')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Должность'
+        verbose_name_plural = 'Должности'
+
+    def __str__(self):
+        return f"{self.role_name}"
+
+
 class Employee(AbstractUser, PermissionsMixin):
-    email = models.EmailField(unique=True)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    email = models.EmailField(unique=True, verbose_name='Почта')
+    first_name = models.CharField(max_length=50, verbose_name='Имя')
+    last_name = models.CharField(max_length=50, verbose_name='Фамилия')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    position = models.ManyToManyField('EmployeePosition', related_name='employees', blank=True)
+    position = models.ManyToManyField(EmployeePosition,
+                                      related_name='employees',
+                                      blank=True,
+                                      verbose_name='Специализация')
+    role = models.ManyToManyField(Role, related_name='role', blank=False, verbose_name='Должность')
     username = None
 
     objects = CustomUserManager()
@@ -36,8 +66,9 @@ class Employee(AbstractUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
+    class Meta:
+        verbose_name = 'Сотрудник'
+        verbose_name_plural = 'Сотрудники'
 
-class EmployeePosition(models.Model):
-    position = models.CharField(max_length=100, unique=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}, {self.position}"
