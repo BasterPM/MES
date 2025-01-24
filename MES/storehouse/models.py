@@ -1,5 +1,5 @@
 from django.db import models
-from MES.users import EmployeePosition
+from users.models import EmployeePosition
 
 
 class MethodObtaining(models.Model):
@@ -86,7 +86,7 @@ class FinalProduct(models.Model):
                                             null=True,
                                             verbose_name='Мера измерения')
     id_employee_position = models.ManyToManyField(EmployeePosition,
-                                                  related_name='employee_position',
+                                                  related_name='final_product_employee_position',
                                                   verbose_name='Специализация исполнителя')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -113,7 +113,7 @@ class AssemblyUnit(models.Model):
                                             null=True,
                                             verbose_name='Мера измерения')
     id_employee_position = models.ManyToManyField(EmployeePosition,
-                                                  related_name='employee_position',
+                                                  related_name='assembly_unit_employee_position',
                                                   verbose_name='Специализация исполнителя')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -140,7 +140,7 @@ class OwnProduction(models.Model):
                                             null=True,
                                             verbose_name='Мера измерения')
     id_employee_position = models.ManyToManyField(EmployeePosition,
-                                                  related_name='employee_position',
+                                                  related_name='own_production_employee_position',
                                                   verbose_name='Специализация исполнителя')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

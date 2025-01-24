@@ -1,7 +1,7 @@
 from django.db import models
-from ..storehouse import Storehouse
-from ..users.models import Employee
-from ..orders.models import Orders
+from storehouse.models import Storehouse
+from users.models import Employee
+from orders.models import Orders
 
 
 class Task(models.Model):
@@ -20,4 +20,4 @@ class ProductionPath(models.Model):
                                            verbose_name='Наименование изделия')
     turn = models.IntegerField(verbose_name='очередь операции')
     description = models.CharField(max_length=500, verbose_name='Описание операции')
-    id_employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, verbose_name='Исполнитель')
+    id_employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, verbose_name='Исполнитель', null=True)

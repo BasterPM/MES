@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MethodObtaining, UnitMeasurement, Storehouse, FinalProduct, AssemblyUnit, OwnProduction,\
+from storehouse.models import MethodObtaining, UnitMeasurement, Storehouse, FinalProduct, AssemblyUnit, OwnProduction,\
     TechnologicalProcess, Seller
 
 admin.site.register(MethodObtaining)

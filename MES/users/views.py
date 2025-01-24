@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from .forms import CustomUserCreationForm, AuthenticationForm
+from users.forms import CustomUserCreationForm, AuthenticationForm
 
 
 def start_page_view(request):
