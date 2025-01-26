@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Добро пожаловать в панель управления</h1>
+    <a href="{% url 'logout' %}">Выйти</a>
+
+    <form method="get" action="{% url 'add_order' %}">
+        {% csrf_token %}
+        <button type="submit">Добавить новый заказ</button>
+    </form>
+
+    <form method="get" action="{% url 'add_client' %}">
+        {% csrf_token %}
+        <button type="submit">Добавить нового клиента</button>
+    </form>
+
+    <form method="get" action="{% url 'all_order' %}">
+        {% csrf_token %}
+        <button type="submit">Просмотреть все заказы</button>
+    </form>
+</body>
+</html>

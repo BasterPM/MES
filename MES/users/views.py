@@ -35,7 +35,7 @@ def register_view(request):
             return redirect('dashboard')  # Перенаправление в личный кабинет
     else:
         form = CustomUserCreationForm()
-    return render(request, 'register', {'form': form})
+    return render(request, 'register.html', {'form': form})
 
 
 

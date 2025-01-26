@@ -58,7 +58,12 @@ class Employee(AbstractUser, PermissionsMixin):
                                       related_name='employees',
                                       blank=True,
                                       verbose_name='Специализация')
-    role = models.ManyToManyField(Role, related_name='role', blank=False, verbose_name='Должность')
+    role = models.ForeignKey(Role,
+                             related_name='role',
+                             blank=True,
+                             verbose_name='Должность',
+                             on_delete=models.SET_NULL,
+                             null=True)
     username = None
 
     objects = CustomUserManager()
@@ -71,7 +76,7 @@ class Employee(AbstractUser, PermissionsMixin):
         verbose_name_plural = 'Сотрудники'
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}, {self.position}"
+        return f"{self.first_name} {self.last_name}, {self.role}, {self.position}"
 
 #
 # class Clients(models.Model):
