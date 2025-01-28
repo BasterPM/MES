@@ -5,7 +5,37 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Привет начальник производства</h1>
+<h1>Добро пожаловать в панель управления</h1>
     <a href="{% url 'logout' %}">Выйти</a>
+
+    <form method="get" action="{% url 'tasks' %}">
+        {% csrf_token %}
+        <button type="submit">Задачи</button>
+    </form>
+
+    <form method="get" action="{% url 'add_product' %}">
+        {% csrf_token %}
+        <button type="submit">Добавить новое изделие</button>
+    </form>
+
+    <form method="get" action="{% url 'add_assembly' %}">
+        {% csrf_token %}
+        <button type="submit">Добавить новую сборочную единицу</button>
+    </form>
+
+    <form method="get" action="{% url 'add_own_product' %}">
+        {% csrf_token %}
+        <button type="submit">Добавить новую единицу собственного производства</button>
+    </form>
+
+    <form method="get" action="{% url 'add_store_house_element' %}">
+        {% csrf_token %}
+        <button type="submit">Добавить новый покупной элемент</button>
+    </form>
+
+    <form method="get" action="{% url 'add_task' %}">
+        {% csrf_token %}
+        <button type="submit">Создать задачу</button>
+    </form>
 </body>
 </html>

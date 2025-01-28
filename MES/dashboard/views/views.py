@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 
 
 def dashboard_view(request):
@@ -10,3 +10,7 @@ def dashboard_view(request):
                       6: 'technical_worker/main_page.html'}  # технический работник
     user_role = request.user.role_id
     return render(request, dashboard_menu[user_role])
+
+
+def my_tasks_view(request):
+    return HttpResponse('тут покажем все задачи пользователя')

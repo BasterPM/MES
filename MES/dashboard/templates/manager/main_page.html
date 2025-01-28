@@ -9,6 +9,11 @@
     <h1>Добро пожаловать в панель управления</h1>
     <a href="{% url 'logout' %}">Выйти</a>
 
+    <form method="get" action="{% url 'tasks' %}">
+        {% csrf_token %}
+        <button type="submit">Задачи</button>
+    </form>
+
     <form method="get" action="{% url 'add_order' %}">
         {% csrf_token %}
         <button type="submit">Добавить новый заказ</button>
